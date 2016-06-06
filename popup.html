@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<style>
+			html, body {
+				width: 200px;
+			}
+			.container {
+				width: 150px;
+			}
+			
+			.form-row {
+				white-space: nowrap;
+			}
+			
+			label {
+				display: inline-block;
+				width: 40px;
+			}
+			
+			input[type="text"] {
+				display: inline-block;
+				margin: 2px;
+				width: 80%;
+			}
+			
+			input[type="checkbox"] {
+				vertical-align: middle;
+			}
+		
+		</style>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="form-row">
+				<label for="binary">Bin:</label> 
+				<input type="text" id="binary"/>
+			</div>
+			
+			<div class="form-row">
+				<label for="decimal">Dec:</label> 
+				<input type="text" id="decimal"/>
+			</div>
+			
+			<div class="form-row">
+				<label for="hex">Hex:</label>
+				<input type="text" id="hex"/>
+				<input type="checkbox" name="mac-delimiter" id="del" value="delimiter"></input> 
+			</div>
+		</div>
+	</body>
+	
+	<script src="popup.js"></script>
+	
+</html>
