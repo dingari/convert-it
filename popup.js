@@ -3,21 +3,6 @@ var decimal = document.getElementById("decimal");
 var hex = document.getElementById("hex");
 var delCheckbox = document.getElementById("del");
 
-var KEY_CTRL = 17;
-var KEY_A = 65;
-var keydown = [];
-
-var KEY_STATE_CTRL_A = false;
-
-window.addEventListener('keydown', function(e) {
-	keydown[e.keyCode] = true;
-	KEY_STATE_CTRL_A = keydown[KEY_CTRL] && e.keyCode === KEY_A;
-});
-
-window.addEventListener('keyup', function(e) {
-	keydown[e.keyCode] = false;
-});
-
 binary.addEventListener('keyup', function() {
 	var binval = validate(this.value, /[01]*/);
 	
@@ -32,14 +17,12 @@ decimal.addEventListener('keyup', function() {
 	setViewValue(hex, dec2hex(decval));
 });
 
-hex.addEventListener('keyup', function(e) {
-	console.log(KEY_STATE_CTRL_A);
-	if(KEY_STATE_CTRL_A)
-		return;
-	
+hex.addEventListener('keyup', function(e) {	
 	var hexval = validate(purify(this.value), new RegExp('[0-9a-f]*', 'i'));
 	
-	setViewValue(hex, this.value);
+	if(hexval !== this.value)
+		setViewValue(hex, hexval);
+		
 	setViewValue(decimal, parseInt(hexval, 16));
 	setViewValue(binary, dec2bin(decimal.value));
 });
