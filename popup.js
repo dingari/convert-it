@@ -47,7 +47,7 @@ function dec2hex(dec) {
 function dec2bin(dec) {
 	var asInt = parseInt(dec);
 	if(asInt)
-		return asInt.toString(2);
+		return formatBin(asInt.toString(2));
 }
 
 function validate(value, regex) {
@@ -70,4 +70,20 @@ function delimiterify(hex) {
 	}
 	
 	return newhex;
+}
+
+// Format the binary value string to always display a multiple of 8 bits
+// TODO: There has to be a better way to format the string though
+function formatBin(binStr) {
+	if(!binStr) return;
+
+	i = 0;
+	len = binStr.length;
+	while(div = len / (8 * ++i) > 1) {};
+
+	for(j = len; j < 8*i; ++j) {
+		binStr = '0' + binStr;
+	}
+
+	return binStr;
 }
